@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Who Owes Whom?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Who Owes Whom?</h1>
+    <button id="reset" class="secondary" type="button">Start over</button>
+  </header>
+
+  <p id="error" role="alert" hidden></p>
+
+  <main>
+    <div class="column">
+      <section>
+        <h2>1. People</h2>
+        <form id="member-form" class="row">
+          <input id="member-name" placeholder="Name" maxlength="40" required>
+          <button>Add</button>
+        </form>
+        <ul id="members"></ul>
+      </section>
+
+      <section>
+        <h2>2. Add an expense</h2>
+        <p id="need-members" class="muted">Add at least two people first.</p>
+        <form id="expense-form" hidden>
+          <label>Description
+            <input id="description" maxlength="100" placeholder="Dinner" required>
+          </label>
+          <div class="row">
+            <label>Amount
+              <input id="amount" inputmode="decimal" placeholder="0.00" required>
+            </label>
+            <label>Paid by
+              <select id="payer"></select>
+            </label>
+          </div>
+          <label>Split
+            <select id="method">
+              <option value="equal">Evenly</option>
+              <option value="exact">By exact amounts</option>
+              <option value="percent">By percentages</option>
+              <option value="shares">By shares (e.g. 2 for a couple)</option>
+            </select>
+          </label>
+          <fieldset>
+            <legend>Between</legend>
+            <div id="participants"></div>
+            <p id="split-hint" class="muted"></p>
+          </fieldset>
+          <button>Add expense</button>
+        </form>
+      </section>
+    </div>
+
+    <div class="column">
+      <section>
+        <h2>Settle up</h2>
+        <p id="settle-note" class="muted"></p>
+        <ul id="transfers"></ul>
+      </section>
+
+      <section>
+        <h2>Balances</h2>
+        <table>
+          <thead><tr><th>Person</th><th>Paid</th><th>Share</th><th>Balance</th></tr></thead>
+          <tbody id="balances"></tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Expenses</h2>
+        <p id="no-expenses" class="muted">Nothing yet.</p>
+        <ul id="expenses"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
